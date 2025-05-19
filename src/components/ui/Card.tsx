@@ -19,13 +19,15 @@ export default function Card({ data }: CardProps) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div>
-      <img
-        src={isHovered && data?.images[1] ? data?.images[1] : data?.thumbnail}
-        alt={data?.title}
-        className="bg-neutral-100 rounded w-full object-cover"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      />
+      <div className="min-h-[330px] bg-neutral-100 ">
+        <img
+          src={isHovered && data?.images[1] ? data?.images[1] : data?.thumbnail}
+          alt={data?.title}
+          className="rounded w-full object-cover"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        />
+      </div>
       <div className="mt-2">
         <div className="flex items-center justify-between">
           <div>{data?.title}</div>

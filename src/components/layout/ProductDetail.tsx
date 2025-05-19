@@ -58,11 +58,13 @@ export default function ProductDetail({ data }: any) {
               </div>
             </div>
           )}
-          <img
-            src={data.images[currImage]}
-            alt={data.title}
-            className="bg-neutral-100 w-full object-cover"
-          />
+          <div className="min-h-[330px] bg-neutral-100 w-full">
+            <img
+              src={data.images[currImage]}
+              alt={data.title}
+              className=" w-full object-cover"
+            />
+          </div>
         </div>
         <div className="flex justify-between items-center mt-4 mb-8">
           <button
