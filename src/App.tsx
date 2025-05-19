@@ -3,13 +3,16 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
+import Layout from "./components/layout/Layout";
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Furnitures />
+      <Layout>
+        <Furnitures />
+      </Layout>
     </QueryClientProvider>
   );
 }
@@ -17,12 +20,21 @@ function App() {
 function Furnitures() {
   const getData = async () => {
     const res = await fetch("https://dummyjson.com/products?limit=10&skip=10");
-    return await res.json()
+    return await res.json();
   };
-  const {data, isLoading} = useQuery({ queryKey: ["data"], queryFn: getData });
-  if (isLoading) return <div>Wait...</div>
-  
-  return <div>{data.products.map((item : any) => <div key={item.id}>{item.title}</div>)}</div>;
+  const { data, isLoading } = useQuery({
+    queryKey: ["data"],
+    queryFn: getData,
+  });
+  if (isLoading) return <div>Wait...</div>;
+
+  return (
+    <div>
+      {data.products.map((item: any) => (
+        <div key={item.id}>{item.title}</div>
+      ))}
+    </div>
+  );
 }
 
 export default App;
