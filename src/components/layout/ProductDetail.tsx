@@ -179,7 +179,7 @@ export default function ProductDetail({ data }: any) {
         </div>
         <div className="mt-6">
           <div>Reviews</div>
-          <div className="flex flex-col gap-2 mt-2">
+          <div className="flex flex-col gap-8 mt-2">
             {data.reviews.map((review: any) => (
               <Review data={review} />
             ))}

@@ -12,31 +12,45 @@ type ReviewProps = {
 
 export default function Review({ data }: ReviewProps) {
   return (
-    <div className="border p-2 border-neutral-200 rounded">
-      <div className="flex justify-between items-center">
-        <div className="flex gap-2 items-center">
-          <div>{data.reviewerName}</div>
-          <div className="text-sm text-neutral-500">{data.reviewerEmail}</div>
-        </div>
-        <div className="flex gap-1 items-center text-neutral-500">
-          <div
-            className={
-              data.rating <= 2
-                ? "text-amber-100"
-                : data.rating <= 3
-                ? "text-amber-200"
-                : data.rating <= 4
-                ? "text-amber-300"
-                : "text-amber-400"
-            }
-          >
-            <Star />
+    <div className="">
+      <div className="flex gap-2 items-start">
+        <div>
+          <div className="size-10 bg-neutral-100 rounded-full text-sm text-green-800 flex justify-center items-center">
+            {data.reviewerName[0]}
           </div>
-          <div>{data.rating}</div>
+        </div>
+        <div className="w-full">
+          <div className="flex justify-between items-center w-full">
+            <div className="flex gap-2 items-center">
+              <div className="text-sm text-neutral-500">
+                {data.reviewerName}
+              </div>
+              <div className="text-sm text-neutral-500">
+                {formatDate(data.date)}
+              </div>
+
+              {/* <div className="text-sm text-neutral-500">{data.reviewerEmail}</div> */}
+            </div>
+            <div className="flex gap-1 items-center text-neutral-500">
+              <div
+                className={
+                  data.rating <= 2
+                    ? "text-amber-100"
+                    : data.rating <= 3
+                    ? "text-amber-200"
+                    : data.rating <= 4
+                    ? "text-amber-300"
+                    : "text-amber-400"
+                }
+              >
+                <Star />
+              </div>
+              <div>{data.rating}</div>
+            </div>
+          </div>
+          <div className="">{data.comment}</div>
         </div>
       </div>
-      <div className="text-sm text-neutral-500">{formatDate(data.date)}</div>
-      <div className="mt-4">{data.comment}</div>
     </div>
   );
 }
