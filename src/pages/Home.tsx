@@ -8,16 +8,16 @@ export default function Home() {
     <>
       <div className="flex flex-col-reverse md:grid md:grid-cols-12 gap-8 items-center">
         <div className="col-span-6">
-          <div className="text-4xl text-center md:text-left md:text-6xl font-bold mb-8">
+          <div className="text-4xl text-center md:text-left md:text-6xl mb-8 heading">
             Sustainable Materials. Modern Design.
           </div>
           <div>
-            <p className="text-center md:text-left">
+            <p className="text-center md:text-left text-neutral-500">
               Discover curated collections that blend comfort, elegance, and
               craftsmanship. At Gelo, we believe your space should reflect your
               personality—warm, stylish, and uniquely yours.
             </p>
-            <p className="mt-4 hidden md:block">
+            <p className="mt-4 hidden md:block text-neutral-500">
               From cozy sofas to statement dining sets, our pieces are made to
               last and designed to impress. Whether you're furnishing a new home
               or upgrading your favorite corner, we’ve got the perfect match for
