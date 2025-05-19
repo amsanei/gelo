@@ -11,8 +11,8 @@ export default function ProductDetail({ data }: any) {
   const [currImage, setCurrImage] = useState(0);
   const [showQrCode, setShowQrCode] = useState(false);
   return (
-    <div className="grid grid-cols-12 gap-8">
-      <div className="col-span-5">
+    <div className="flex flex-col md:grid md:grid-cols-12 gap-8">
+      <div className="w-full col-span-5">
         <div className="relative">
           {showQrCode && (
             <div className="flex items-center justify-center w-full h-full top-0 left-0 absolute bg-black/20 backdrop-blur">

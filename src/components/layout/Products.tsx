@@ -22,7 +22,7 @@ export default function Products() {
       <div className="flex justify-between items-center">
         <div className="font-bold text-xl mb-4">Products</div>
       </div>
-      <div className="grid grid-cols-12 gap-6">
+      <div className="grid md:grid-cols-12 gap-6">
         {data.products.map((item: any) => (
           <div
             className="cursor-pointer col-span-3"

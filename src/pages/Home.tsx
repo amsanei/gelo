@@ -6,27 +6,28 @@ import Products from "../components/layout/Products";
 export default function Home() {
   return (
     <>
-      <div className="grid grid-cols-12 gap-8 items-center">
+      <div className="flex flex-col-reverse md:grid md:grid-cols-12 gap-8 items-center">
         <div className="col-span-6">
-          <div className="text-6xl font-bold mb-8">
+          <div className="text-4xl text-center md:text-left md:text-6xl font-bold mb-8">
             Sustainable Materials. Modern Design.
           </div>
           <div>
-            <p>
+            <p className="text-center md:text-left">
               Discover curated collections that blend comfort, elegance, and
               craftsmanship. At Gelo, we believe your space should reflect your
               personality—warm, stylish, and uniquely yours.
             </p>
-            <p className="mt-4">
+            <p className="mt-4 hidden md:block">
               From cozy sofas to statement dining sets, our pieces are made to
               last and designed to impress. Whether you're furnishing a new home
               or upgrading your favorite corner, we’ve got the perfect match for
               your style.
             </p>
           </div>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-col items-center md:items-start">
             <Button>View Products</Button>
-            <div className="flex items-center gap-2 mt-12">
+
+            <div className="flex  md:justify-start items-center gap-2 mt-12">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
