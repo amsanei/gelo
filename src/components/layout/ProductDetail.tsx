@@ -6,16 +6,39 @@ import ArrowRight from "../icons/ArrowRight";
 
 export default function ProductDetail({ data }: any) {
   const [currImage, setCurrImage] = useState(0);
+  const [showQrCode, setShowQrCode] = useState(false);
   return (
     <div className="grid grid-cols-12 gap-8">
       <div className="col-span-5">
-        <img
-          src={data.images[currImage]}
-          alt=""
-          className="bg-neutral-100 w-full object-cover"
-        />
-        <div className="flex justify-between items-center my-4">
-          <div>BarCode</div>
+        <div className="relative">
+          {showQrCode && (
+            <div className="flex items-center justify-center w-full h-full top-0 left-0 absolute bg-black/20 backdrop-blur">
+              <div className="w-2/3 bg-white p-2">
+                <img
+                  src={data?.meta?.qrCode}
+                  alt="bar code"
+                  className="w-full"
+                />
+                <div className="flex flex-col items-center mt-4">
+                  <div>{data?.meta.barcode} </div>
+                  <div className="text-neutral-500">Bar Code</div>
+                </div>
+              </div>
+            </div>
+          )}
+          <img
+            src={data.images[currImage]}
+            alt={data.title}
+            className="bg-neutral-100 w-full object-cover"
+          />
+        </div>
+        <div className="flex justify-between items-center mt-4 mb-8">
+          <button
+            className="cursor-pointer text-sm px-2 py-1 rounded-full border border-neutral-200 text-neutral-500 hover:text-black hover:bg-neutral-100 transition-colors"
+            onClick={() => setShowQrCode((prev) => !prev)}
+          >
+            {showQrCode ? "Hide Bar Code" : "Show Bar Code"}
+          </button>
           <div className="flex gap-2">
             <button
               className="disabled:text-neutral-400 cursor-pointer hover:-translate-x-1 transition-all"
