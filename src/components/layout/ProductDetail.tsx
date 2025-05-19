@@ -6,10 +6,39 @@ import ArrowRight from "../icons/ArrowRight";
 import Button from "../ui/Button";
 import Cart from "../icons/Cart";
 import Star from "../icons/Star";
+import confetti from "canvas-confetti";
 
 export default function ProductDetail({ data }: any) {
   const [currImage, setCurrImage] = useState(0);
   const [showQrCode, setShowQrCode] = useState(false);
+
+  const handleAddToCartClick = () => {
+    var end = Date.now() + 3 * 1000;
+
+    // go Buckeyes!
+    var colors = ["#0d542b", "#ffffff"];
+
+    (function frame() {
+      confetti({
+        particleCount: 2,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+        colors: colors,
+      });
+      confetti({
+        particleCount: 2,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+        colors: colors,
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    })();
+  };
   return (
     <div className="flex flex-col md:grid md:grid-cols-12 gap-8">
       <div className="w-full col-span-5">
@@ -67,7 +96,8 @@ export default function ProductDetail({ data }: any) {
               " Cm × " +
               data.dimensions.height +
               " Cm × " +
-              data.dimensions.depth + " Cm"
+              data.dimensions.depth +
+              " Cm"
             }
             label="Dimensions(w,h,d)"
           />
@@ -121,8 +151,12 @@ export default function ProductDetail({ data }: any) {
             </div>
             <div className="font-bold text-xl">$ {data.price}</div>
           </div>
+
           <Button>
-            <div className="flex gap-2 items-center">
+            <div
+              className="flex gap-2 items-center"
+              onClick={handleAddToCartClick}
+            >
               <Cart />
               <span>Add to Cart</span>
             </div>
