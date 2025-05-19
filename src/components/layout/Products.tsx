@@ -1,7 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import Card from "../ui/Card";
+import Modal from "../ui/Modal";
+import { useState } from "react";
 
 export default function Products() {
+    const [isModalOpen,setIsModalOpen] = useState(false)
   const getData = async () => {
     const res = await fetch("https://dummyjson.com/products?limit=20&skip=10");
     return await res.json();
@@ -16,12 +19,16 @@ export default function Products() {
     <div className="mt-16">
       <div className="flex justify-between items-center">
         <div className="font-bold text-xl mb-4">Products</div>
+        <button onClick={() => setIsModalOpen(true)}>show</button>
       </div>
       <div className="grid grid-cols-12 gap-6">
         {data.products.map((item: any) => (
           <Card key={item.id} data={item} />
         ))}
       </div>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} >
+        Hello
+      </Modal>
     </div>
   );
 }
