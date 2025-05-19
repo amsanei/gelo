@@ -71,7 +71,6 @@ export default function ProductDetail({ data }: any) {
         </div>
       </div>
       <div className="col-span-7">
-        <div className="mb-2 text-sm text-neutral-500">Back To Products</div>
         <div className="font-bold text-xl">{data.title}</div>
         <div className="flex gap-4 items-center mt-4">
           <div className="flex flex-col">
@@ -83,9 +82,21 @@ export default function ProductDetail({ data }: any) {
             <span>{data.brand}</span>
           </div>
         </div>
-        <div className="mt-4 text-neutral-500">{data.description}</div>
-
-        <div className="mt-8">
+        <div className="my-4 text-neutral-500">{data.description}</div>
+        <div className="my-2 py-2 border-y border-neutral-200 flex items-center justify-between">
+          <div className="text-sm text-neutral-500">Tags</div>
+          <div className="flex gap-2 items-center">
+            {data?.tags.map((tag: string, index: number) => (
+              <div
+                className="bg-neutral-100 rounded-full text-neutral-500 px-4 text-sm py-1 hover:text-black transition-colors"
+                key={index}
+              >
+                {tag}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mt-6">
           <div>Reviews</div>
           <div className="flex flex-col gap-2 mt-2">
             {data.reviews.map((review: any) => (
