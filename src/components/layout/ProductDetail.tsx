@@ -3,6 +3,9 @@ import DataRow from "../ui/DataRow";
 import Review from "../ui/Review";
 import ArrowLeft from "../icons/ArrowLeft";
 import ArrowRight from "../icons/ArrowRight";
+import Button from "../ui/Button";
+import Cart from "../icons/Cart";
+import Star from "../icons/Star";
 
 export default function ProductDetail({ data }: any) {
   const [currImage, setCurrImage] = useState(0);
@@ -57,7 +60,17 @@ export default function ProductDetail({ data }: any) {
           </div>
         </div>
         <div className="mt-4 flex flex-col gap-4">
-          <DataRow data={data.weight} label="Weight" />
+          <DataRow data={data.weight + " Kg"} label="Weight" />
+          <DataRow
+            data={
+              data.dimensions.width +
+              " Cm × " +
+              data.dimensions.height +
+              " Cm × " +
+              data.dimensions.depth + " Cm"
+            }
+            label="Dimensions(w,h,d)"
+          />
           <DataRow
             data={data.warrantyInformation}
             label="Warranty Information"
@@ -71,18 +84,50 @@ export default function ProductDetail({ data }: any) {
         </div>
       </div>
       <div className="col-span-7">
-        <div className="font-bold text-xl">{data.title}</div>
-        <div className="flex gap-4 items-center mt-4">
-          <div className="flex flex-col">
-            <span className="text-sm text-neutral-500">Category</span>
-            <span>{data.category}</span>
+        <div className="font-bold text-2xl">{data.title}</div>
+        <div className="flex justify-between items-end">
+          <div className="flex gap-4 items-center mt-4">
+            <div className="flex flex-col">
+              <span className="text-sm text-neutral-500">Category</span>
+              <span>{data.category}</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-sm text-neutral-500">Brand</span>
+              <span>{data.brand}</span>
+            </div>
           </div>
-          <div className="flex flex-col">
-            <span className="text-sm text-neutral-500">Brand</span>
-            <span>{data.brand}</span>
+          <div className="flex gap-1 items-center text-neutral-500">
+            <div
+              className={
+                data.rating <= 2
+                  ? "text-amber-100"
+                  : data.rating <= 3
+                  ? "text-amber-200"
+                  : data.rating <= 4
+                  ? "text-amber-300"
+                  : "text-amber-400"
+              }
+            >
+              <Star />
+            </div>
+            <div>{data?.rating}</div>
           </div>
         </div>
         <div className="my-4 text-neutral-500">{data.description}</div>
+        <div className="flex justify-between items-center my-8">
+          <div>
+            <div className="line-through text-sm text-neutral-500">
+              $ {data.price}
+            </div>
+            <div className="font-bold text-xl">$ {data.price}</div>
+          </div>
+          <Button>
+            <div className="flex gap-2 items-center">
+              <Cart />
+              <span>Add to Cart</span>
+            </div>
+          </Button>
+        </div>
         <div className="my-2 py-2 border-y border-neutral-200 flex items-center justify-between">
           <div className="text-sm text-neutral-500">Tags</div>
           <div className="flex gap-2 items-center">
