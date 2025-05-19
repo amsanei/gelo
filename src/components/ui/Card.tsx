@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 type CardProps = {
   data: {
     id: number;
@@ -9,16 +11,20 @@ type CardProps = {
     thumbnail: string;
     brand: string;
     category: string;
+    images: string[];
   };
 };
 
 export default function Card({ data }: CardProps) {
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <div>
       <img
-        src={data?.thumbnail}
+        src={isHovered && data?.images[1] ? data?.images[1] : data?.thumbnail}
         alt={data?.title}
         className="bg-neutral-100 rounded w-full object-cover"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       />
       <div className="mt-2">
         <div className="flex items-center justify-between">
