@@ -4,6 +4,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import Layout from "./components/layout/Layout";
+import Home from "./pages/Home";
 
 const queryClient = new QueryClient();
 
@@ -11,7 +12,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Layout>
-        <Furnitures />
+        <Home />
       </Layout>
     </QueryClientProvider>
   );
