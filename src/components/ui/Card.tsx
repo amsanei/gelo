@@ -14,7 +14,7 @@ type CardProps = {
 
 export default function Card({ data }: CardProps) {
   return (
-    <div className="col-span-3">
+    <div>
       <img
         src={data?.thumbnail}
         alt={data?.title}
