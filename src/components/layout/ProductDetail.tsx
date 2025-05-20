@@ -7,6 +7,7 @@ import Star from "../icons/Star";
 import confetti from "canvas-confetti";
 import getDiscountedPrice from "../../lib/getDiscountedPrice";
 import ImageCarousel from "../ui/ImageCarousel";
+import QrCode from "../icons/QrCode";
 
 export default function ProductDetail({ data }: any) {
   const [showQrCode, setShowQrCode] = useState(false);
@@ -42,12 +43,24 @@ export default function ProductDetail({ data }: any) {
     <div className="flex flex-col md:grid md:grid-cols-12 gap-8 items-start max-h-[85vh] overflow-auto">
       <div className="w-full col-span-5 sticky top-0">
         <div className="relative">
+          <div className="flex justify-between items-center absolute top-2 left-0 w-full px-2 ">
+            <button
+              onClick={() => setShowQrCode((prev) => !prev)}
+              className={`rounded-full p-2 transition-colors cursor-pointer z-50 hover:text-green-800 ${
+                showQrCode
+                  ? "bg-green-800/10 text-green-800"
+                  : "bg-white text-neutral-500 "
+              }`}
+            >
+              <QrCode />
+            </button>
+            {data?.discountPercentage > 0 && (
+              <div className="text-green-800 text-sm bg-white px-2 rounded-full">
+                {data?.discountPercentage}% Off
+              </div>
+            )}
+          </div>
           <ImageCarousel images={data.images} />
-          {data?.discountPercentage > 0 && (
-            <div className="text-green-800 text-sm bg-white px-2 rounded-full  absolute top-2 left-2">
-              {data?.discountPercentage}% Off
-            </div>
-          )}
           {showQrCode && (
             <div className="flex items-center justify-center w-full h-full top-0 left-0 absolute bg-black/20 backdrop-blur">
               <div className="w-2/3 bg-white p-2">
@@ -66,7 +79,9 @@ export default function ProductDetail({ data }: any) {
         </div>
 
         <div className="flex justify-between items-center my-4">
-          {data?.discountPercentage > 0 ? (
+          {data?.availabilityStatus === "Out of Stock" ? (
+            <div className="text-sm text-neutral-500">Out of Stock</div>
+          ) : data?.discountPercentage > 0 ? (
             <div>
               <div className="line-through text-sm text-neutral-500">
                 $ {data?.price}
@@ -81,22 +96,19 @@ export default function ProductDetail({ data }: any) {
             </div>
           )}
           <div className="flex gap-2">
-            <Button
-              type="second"
-              onClick={() => setShowQrCode((prev) => !prev)}
-            >
-              {showQrCode ? "Hide QR Code" : "Show QR Code"}
-            </Button>
-
-            <Button>
-              <div
-                className="flex gap-2 items-center"
-                onClick={handleAddToCartClick}
-              >
-                <Cart />
-                <span>Add to Cart</span>
-              </div>
-            </Button>
+            {data?.availabilityStatus === "Out of Stock" ? (
+              <Button type="second">Notify Me</Button>
+            ) : (
+              <Button>
+                <div
+                  className="flex gap-2 items-center"
+                  onClick={handleAddToCartClick}
+                >
+                  <Cart />
+                  <span>Add to Cart</span>
+                </div>
+              </Button>
+            )}
           </div>
         </div>
         <div className="flex flex-col gap-2">
@@ -147,7 +159,6 @@ export default function ProductDetail({ data }: any) {
             data={data.shippingInformation}
             label="Shipping Information"
           />
-          <DataRow data={data.availabilityStatus} label="Availability Status" />
           <DataRow data={data.returnPolicy} label="Return Policy" />
         </div>
 
