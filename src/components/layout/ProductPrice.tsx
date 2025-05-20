@@ -1,7 +1,8 @@
 import getDiscountedPrice from "../../lib/getDiscountedPrice";
+import type { ProductAvailabilityStatus } from "../../types";
 
 type ProductPriceProps = {
-  availabilityStatus: "In Stock" | "Out of Stock" | "Low Stock";
+  availabilityStatus: ProductAvailabilityStatus;
   discountPercentage: number;
   price: number;
 };

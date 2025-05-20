@@ -7,13 +7,14 @@ import ArrowRight from "../icons/ArrowRight";
 import ArrowLeft from "../icons/ArrowLeft";
 import axios from "../../axios/axios";
 import Button from "../ui/Button";
+import type {  ProductDetailData } from "../../types";
 
 export default function Products() {
   const [currPage, setCurrPage] = useState(1);
   const limit = 8;
   const skip = (currPage - 1) * limit;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState<ProductDetailData | null>(null);
   const getData = async ({
     queryKey,
   }: {
@@ -53,7 +54,7 @@ export default function Products() {
             <Button onClick={refetch}>Try Again</Button>
           </div>
         ) : (
-          data.products.map((item: any) => (
+          data.products.map((item: ProductDetailData) => (
             <div
               className="cursor-pointer col-span-3"
               onClick={() => {
@@ -95,10 +96,11 @@ export default function Products() {
           </div>
         </div>
       )}
-
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <ProductDetail data={selectedItem} />
-      </Modal>
+      {selectedItem && (
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <ProductDetail data={selectedItem} />
+        </Modal>
+      )}
     </div>
   );
 }

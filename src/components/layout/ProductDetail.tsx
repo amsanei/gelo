@@ -8,8 +8,13 @@ import ProductCartControls from "./ProductCartControls";
 import ProductPrice from "./ProductPrice";
 import ProductReviews from "./ProductReviews";
 import ProductQrCode from "./ProductQrCode";
+import type { ProductDetailData } from "../../types";
 
-export default function ProductDetail({ data }: any) {
+type ProductDetailProps = {
+  data : ProductDetailData
+}
+
+export default function ProductDetail({ data }: ProductDetailProps) {
   const [showQrCode, setShowQrCode] = useState(false);
 
   return (
@@ -41,7 +46,7 @@ export default function ProductDetail({ data }: any) {
           <ProductQrCode
             showQrCode={showQrCode}
             qrCode={data?.meta?.qrCode}
-            barCode={data?.meta.barCode}
+            barCode={data?.meta?.barcode}
           />
         </div>
 

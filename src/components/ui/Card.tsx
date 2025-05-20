@@ -1,19 +1,9 @@
 import Star from "../icons/Star";
 import getDiscountedPrice from "../../lib/getDiscountedPrice";
+import type { Product } from "../../types";
 
 type CardProps = {
-  data: {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    rating: number;
-    discountPercentage: number;
-    thumbnail: string;
-    brand: string;
-    category: string;
-    images: string[];
-  };
+  data: Product;
 };
 
 export default function Card({ data }: CardProps) {

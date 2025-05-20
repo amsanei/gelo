@@ -1,13 +1,8 @@
+import type { ProductReview } from "../../types";
 import Rating from "./Rating";
 
 type ReviewProps = {
-  data: {
-    rating: number;
-    comment: string;
-    date: Date;
-    reviewerName: string;
-    reviewerEmail: string;
-  };
+  data: ProductReview
 };
 
 export default function Review({ data }: ReviewProps) {
