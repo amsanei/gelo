@@ -17,7 +17,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
           style={{ transform: `translateX(-${activeIndex * 100}%)` }}
         >
           {images.map((img, index) => (
-            <img key={index} src={img} alt={`Image ${index + 1}`} />
+            <img key={index} src={img} alt={`Image ${index + 1}`} className="object-cover" />
           ))}
         </div>
       </div>

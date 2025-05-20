@@ -28,6 +28,7 @@ export default function Modal({ children, isOpen, onClose }: ModalProps) {
         onClick={handleMaskOnClick}
         className="w-dvw h-dvh bg-black/20 backdrop-blur-3xl fixed top-0 left-0 flex justify-center items-start overflow-auto z-50"
       >
+        <div className="absolute right-4 text-2xl cursor-pointer text-black/60" onClick={onClose}>×</div>
         <div className="w-[90%] md:w-3/4 bg-white p-4 my-8 relative">
           {children}
         </div>

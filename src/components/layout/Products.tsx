@@ -71,7 +71,7 @@ export default function Products() {
           <div className="text-neutral-500">
             Page {currPage} From {Math.ceil(data.total / limit)}
           </div>
-          <div className="flex gap-8">
+          <div className="flex gap-4 md:gap-8">
             <button
               className="disabled:cursor-not-allowed disabled:text-neutral-500 cursor-pointer group flex items-start gap-2"
               onClick={() => setCurrPage((prev) => Math.max(prev - 1, 1))}

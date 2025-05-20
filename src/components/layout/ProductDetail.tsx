@@ -41,7 +41,7 @@ export default function ProductDetail({ data }: any) {
   };
   return (
     <div className="flex flex-col md:grid md:grid-cols-12 gap-8 items-start max-h-[85vh] overflow-auto">
-      <div className="w-full col-span-5 sticky top-0">
+      <div className="w-full col-span-5 md:sticky top-0">
         <div className="relative">
           <div className="flex justify-between items-center absolute top-2 left-0 w-full px-2 ">
             <button
@@ -61,6 +61,25 @@ export default function ProductDetail({ data }: any) {
             )}
           </div>
           <ImageCarousel images={data.images} />
+          <div className="flex md:hidden justify-between items-center my-2">
+            <div className="font-bold text-2xl">{data.title}</div>
+            <div className="flex gap-1 items-center text-neutral-500">
+              <div>{data?.rating}</div>
+              <div
+                className={
+                  data.rating <= 2
+                    ? "text-amber-100"
+                    : data.rating <= 3
+                    ? "text-amber-200"
+                    : data.rating <= 4
+                    ? "text-amber-300"
+                    : "text-amber-400"
+                }
+              >
+                <Star />
+              </div>
+            </div>
+          </div>
           {showQrCode && (
             <div className="flex items-center justify-center w-full h-full top-0 left-0 absolute bg-black/20 backdrop-blur">
               <div className="w-2/3 bg-white p-2">
@@ -99,7 +118,12 @@ export default function ProductDetail({ data }: any) {
             <Button type="second">Notify Me</Button>
           ) : (
             <div className="flex gap-2">
-              <input type="number" min={data?.minimumOrderQuantity} defaultValue={data?.minimumOrderQuantity}  className="border border-neutral-200 w-16 px-2" />
+              <input
+                type="number"
+                min={data?.minimumOrderQuantity}
+                defaultValue={data?.minimumOrderQuantity}
+                className="border border-neutral-200 w-16 px-2"
+              />
               <Button onClick={handleAddToCartClick}>
                 <div className="flex gap-2 items-center">
                   <Cart />
@@ -115,7 +139,7 @@ export default function ProductDetail({ data }: any) {
         </div>
       </div>
       <div className="col-span-7 pe-4">
-        <div className="flex justify-between items-center">
+        <div className="hidden md:flex justify-between items-center">
           <div className="font-bold text-2xl">{data.title}</div>
           <div className="flex gap-1 items-center text-neutral-500">
             <div>{data?.rating}</div>
@@ -135,20 +159,11 @@ export default function ProductDetail({ data }: any) {
           </div>
         </div>
         <div className="my-4 text-neutral-500">{data.description}</div>
-
         <div className="mt-4 flex flex-col gap-4">
           <DataRow data={data.weight + " Kg"} label="Weight" />
-          <DataRow
-            data={
-              data.dimensions.width +
-              " Cm × " +
-              data.dimensions.height +
-              " Cm × " +
-              data.dimensions.depth +
-              " Cm"
-            }
-            label="Dimensions(w,h,d)"
-          />
+          <DataRow data={data.dimensions.width + " Cm"} label="Width" />
+          <DataRow data={data.dimensions.height + " Cm"} label="Height" />
+          <DataRow data={data.dimensions.depth + " Cm"} label="Depth" />
           <DataRow
             data={data.warrantyInformation}
             label="Warranty Information"
