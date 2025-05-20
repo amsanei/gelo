@@ -5,9 +5,10 @@ type ModalProps = {
   children: ReactNode;
   isOpen: boolean;
   onClose: () => void;
+  size ?: "sm" | "md" | "lg"
 };
 
-export default function Modal({ children, isOpen, onClose }: ModalProps) {
+export default function Modal({ children, isOpen, onClose, size = "lg" }: ModalProps) {
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const handleMaskOnClick = (event: MouseEvent<HTMLElement>) => {
@@ -39,12 +40,12 @@ export default function Modal({ children, isOpen, onClose }: ModalProps) {
             >
               ×
             </div>
-            <div className="w-[90%] md:w-3/4 bg-white p-4 my-8 relative max-h-[85vh] overflow-auto">
+            <div className={`${size === "sm" ? 'w-1/4' : size === "md" ? 'w-2/4' : 'w-3/4' } bg-white p-4 my-8 relative max-h-[85vh] overflow-auto`}>
               {children}
             </div>
           </>
         ) : (
-          <div className="bg-white absolute top-48 rounded-t-4xl overflow-auto ">
+          <div className="bg-white absolute top-48 rounded-t-4xl overflow-auto w-full min-h-[70vh]">
             <div
               className="mx-auto h-2 w-1/2 bg-neutral-200 my-4 mb-2 rounded-full"
               onClick={onClose}
