@@ -39,16 +39,17 @@ export default function ProductDetail({ data }: ProductDetailProps) {
             )}
           </div>
           <ImageCarousel images={data.images} />
-          <div className="flex md:hidden gap-4 justify-between items-center my-4">
-            <div className="font-bold text-2xl">{data.title}</div>
-            <Rating rating={data?.rating} />
-          </div>
+          
           <ProductQrCode
             showQrCode={showQrCode}
             qrCode={data?.meta?.qrCode}
             barCode={data?.meta?.barcode}
           />
         </div>
+        <div className="flex md:hidden gap-4 justify-between items-center my-4">
+            <div className="font-bold text-2xl">{data.title}</div>
+            <Rating rating={data?.rating} />
+          </div>
         <div className="flex justify-between items-center mt-2 mb-4">
           <ProductPrice
             availabilityStatus={data?.availabilityStatus}
@@ -65,7 +66,7 @@ export default function ProductDetail({ data }: ProductDetailProps) {
           <DataRow label="Brand" data={data?.brand} />
         </div>
       </div>
-      <div className="col-span-7">
+      <div className="w-full col-span-7">
         <div className="hidden md:flex justify-between items-center mb-4">
           <div className="font-bold text-2xl">{data.title}</div>
           <Rating rating={data?.rating} />
