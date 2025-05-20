@@ -5,6 +5,7 @@ import { useState } from "react";
 import ProductDetail from "./ProductDetail";
 import ArrowRight from "../icons/ArrowRight";
 import ArrowLeft from "../icons/ArrowLeft";
+import axios from "../../axios/axios";
 
 export default function Products() {
   const [currPage, setCurrPage] = useState(1);
@@ -18,10 +19,11 @@ export default function Products() {
     queryKey: [string, number, number];
   }) => {
     const [, limit, skip] = queryKey;
-    const res = await fetch(
-      `https://dummyjson.com/products?limit=${limit}&skip=${skip}`
-    );
-    return res.json();
+    return axios
+      .get(`products?limit=${limit}&skip=${skip}`)
+      .then((res) => {
+        if (res.status === 200) return res.data;
+      })
   };
   const { data, isLoading } = useQuery({
     queryKey: ["data", limit, skip],
