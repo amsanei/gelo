@@ -50,7 +50,7 @@ export default function ProductDetail({ data }: ProductDetailProps) {
           />
         </div>
 
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mt-2 mb-4">
           <ProductPrice
             availabilityStatus={data?.availabilityStatus}
             discountPercentage={data?.discountPercentage}
