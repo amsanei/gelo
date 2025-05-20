@@ -11,9 +11,10 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
 
   return (
     <>
-      <div className="overflow-hidden w-full bg-neutral-100">
+    <div className="bg-neutral-100 ">
+      <div className="mx-auto max-w-[330px] aspect-square overflow-hidden">
         <div
-          className="h-[440px] flex transition-all duration-500"
+          className="w-full flex transition-all duration-500 items-center"
           style={{ transform: `translateX(-${activeIndex * 100}%)` }}
         >
           {images.map((img, index) => (
@@ -21,10 +22,11 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
               key={index}
               src={img}
               alt={`Image ${index + 1}`}
-              className="object-cover"
+              className="object-cover w-full "
             />
           ))}
         </div>
+      </div>
       </div>
       {images.length > 1 && (
         <div className="flex justify-between items-center">

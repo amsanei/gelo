@@ -19,14 +19,14 @@ export default function About() {
       {isLoading && <div className="text-center text-neutral-500 animate-pulse">Loading...</div>}
       {isError && <div className="text-center text-red-400">Something went wrong!<br /> Try Agin Later</div>}
       {data && (
-        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+        <div className="flex flex-col items-center gap-4">
           <img
             src={data?.data.avatar_url}
             alt={data?.data.display_name}
             className="rounded-full"
           />
           <div className="flex flex-col gap-4">
-            <div className="text-center md:text-left">
+            <div className="text-center">
               <div className="font-bold text-green-800">
                 {data?.data.display_name}
               </div>
