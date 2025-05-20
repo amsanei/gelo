@@ -28,10 +28,10 @@ export default function Review({ data }: ReviewProps) {
               <div className="text-sm text-neutral-500">
                 {formatDate(data.date)}
               </div>
-
               {/* <div className="text-sm text-neutral-500">{data.reviewerEmail}</div> */}
             </div>
             <div className="flex gap-1 items-center text-neutral-500">
+              <div>{data.rating}</div>
               <div
                 className={
                   data.rating <= 2
@@ -45,10 +45,9 @@ export default function Review({ data }: ReviewProps) {
               >
                 <Star />
               </div>
-              <div>{data.rating}</div>
             </div>
           </div>
-          <div className="">{data.comment}</div>
+          <div>{data.comment}</div>
         </div>
       </div>
     </div>

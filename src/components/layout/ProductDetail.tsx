@@ -40,8 +40,8 @@ export default function ProductDetail({ data }: any) {
     })();
   };
   return (
-    <div className="flex flex-col md:grid md:grid-cols-12 gap-8">
-      <div className="w-full col-span-5">
+    <div className="flex flex-col md:grid md:grid-cols-12 gap-8 items-start max-h-[85vh] overflow-auto">
+      <div className="w-full col-span-5 sticky top-0">
         <div className="relative">
           {showQrCode && (
             <div className="flex items-center justify-center w-full h-full top-0 left-0 absolute bg-black/20 backdrop-blur">
@@ -66,30 +66,85 @@ export default function ProductDetail({ data }: any) {
             />
           </div>
         </div>
-        <div className="flex justify-between items-center mt-4 mb-8">
-          <button
-            className="cursor-pointer text-sm px-2 py-1 rounded-full border border-neutral-200 text-neutral-500 hover:text-black hover:bg-neutral-100 transition-colors"
-            onClick={() => setShowQrCode((prev) => !prev)}
-          >
-            {showQrCode ? "Hide Bar Code" : "Show Bar Code"}
-          </button>
+        {data.images.length > 1 && (
+          <div className="flex justify-between items-center my-4">
+            <div className="text-sm text-neutral-500 flex gap-1">
+              <span>{currImage + 1}</span>
+              <span>/</span>
+              <span>{data?.images.length}</span>
+            </div>
+            <div className="flex gap-2">
+              <button
+                className="disabled:text-neutral-400 cursor-pointer hover:-translate-x-1 transition-all"
+                disabled={currImage === 0}
+                onClick={() => setCurrImage((prev) => prev - 1)}
+              >
+                <ArrowLeft />
+              </button>
+              <button
+                className="disabled:text-neutral-400 cursor-pointer hover:translate-x-1 transition-all"
+                disabled={currImage === data.images.length - 1}
+                onClick={() => setCurrImage((prev) => prev + 1)}
+              >
+                <ArrowRight />
+              </button>
+            </div>
+          </div>
+        )}
+
+        <div className="flex justify-between items-center my-4">
+          <div>
+            <div className="line-through text-sm text-neutral-500">
+              $ {data.price}
+            </div>
+            <div className="font-bold text-xl">$ {data.price}</div>
+          </div>
           <div className="flex gap-2">
-            <button
-              className="disabled:text-neutral-400 cursor-pointer hover:-translate-x-1 transition-all"
-              disabled={currImage === 0}
-              onClick={() => setCurrImage((prev) => prev - 1)}
+            <Button
+              type="second"
+              onClick={() => setShowQrCode((prev) => !prev)}
             >
-              <ArrowLeft />
-            </button>
-            <button
-              className="disabled:text-neutral-400 cursor-pointer hover:translate-x-1 transition-all"
-              disabled={currImage === data.images.length - 1}
-              onClick={() => setCurrImage((prev) => prev + 1)}
-            >
-              <ArrowRight />
-            </button>
+              {showQrCode ? "Hide QR Code" : "Show QR Code"}
+            </Button>
+
+            <Button>
+              <div
+                className="flex gap-2 items-center"
+                onClick={handleAddToCartClick}
+              >
+                <Cart />
+                <span>Add to Cart</span>
+              </div>
+            </Button>
           </div>
         </div>
+        <div className="flex flex-col gap-2">
+          <DataRow label="Category" data={data?.category} />
+          <DataRow label="Brand" data={data?.brand} />
+        </div>
+      </div>
+      <div className="col-span-7 pe-4">
+        <div className="flex justify-between items-center">
+          <div className="font-bold text-2xl">{data.title}</div>
+          <div className="flex gap-1 items-center text-neutral-500">
+            <div>{data?.rating}</div>
+            <div
+              className={
+                data.rating <= 2
+                  ? "text-amber-100"
+                  : data.rating <= 3
+                  ? "text-amber-200"
+                  : data.rating <= 4
+                  ? "text-amber-300"
+                  : "text-amber-400"
+              }
+            >
+              <Star />
+            </div>
+          </div>
+        </div>
+        <div className="my-4 text-neutral-500">{data.description}</div>
+
         <div className="mt-4 flex flex-col gap-4">
           <DataRow data={data.weight + " Kg"} label="Weight" />
           <DataRow
@@ -114,57 +169,16 @@ export default function ProductDetail({ data }: any) {
           <DataRow data={data.availabilityStatus} label="Availability Status" />
           <DataRow data={data.returnPolicy} label="Return Policy" />
         </div>
-      </div>
-      <div className="col-span-7">
-        <div className="font-bold text-2xl">{data.title}</div>
-        <div className="flex justify-between items-end">
-          <div className="flex gap-4 items-center mt-4">
-            <div className="flex flex-col">
-              <span className="text-sm text-neutral-500">Category</span>
-              <span>{data.category}</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-sm text-neutral-500">Brand</span>
-              <span>{data.brand}</span>
-            </div>
-          </div>
-          <div className="flex gap-1 items-center text-neutral-500">
-            <div
-              className={
-                data.rating <= 2
-                  ? "text-amber-100"
-                  : data.rating <= 3
-                  ? "text-amber-200"
-                  : data.rating <= 4
-                  ? "text-amber-300"
-                  : "text-amber-400"
-              }
-            >
-              <Star />
-            </div>
-            <div>{data?.rating}</div>
-          </div>
-        </div>
-        <div className="my-4 text-neutral-500">{data.description}</div>
-        <div className="flex justify-between items-center my-8">
-          <div>
-            <div className="line-through text-sm text-neutral-500">
-              $ {data.price}
-            </div>
-            <div className="font-bold text-xl">$ {data.price}</div>
-          </div>
 
-          <Button>
-            <div
-              className="flex gap-2 items-center"
-              onClick={handleAddToCartClick}
-            >
-              <Cart />
-              <span>Add to Cart</span>
-            </div>
-          </Button>
+        <div className="mt-6">
+          <div>Reviews</div>
+          <div className="flex flex-col gap-8 mt-2">
+            {data.reviews.map((review: any) => (
+              <Review data={review} />
+            ))}
+          </div>
         </div>
-        <div className="my-2 py-2 border-y border-neutral-200 flex items-center justify-between">
+        <div className="mt-4 py-2 border-y border-neutral-200 flex items-center justify-between">
           <div className="text-sm text-neutral-500">Tags</div>
           <div className="flex gap-2 items-center">
             {data?.tags.map((tag: string, index: number) => (
@@ -174,14 +188,6 @@ export default function ProductDetail({ data }: any) {
               >
                 {tag}
               </div>
-            ))}
-          </div>
-        </div>
-        <div className="mt-6">
-          <div>Reviews</div>
-          <div className="flex flex-col gap-8 mt-2">
-            {data.reviews.map((review: any) => (
-              <Review data={review} />
             ))}
           </div>
         </div>
