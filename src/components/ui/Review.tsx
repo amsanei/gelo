@@ -1,4 +1,4 @@
-import Star from "../icons/Star";
+import Rating from "./Rating";
 
 type ReviewProps = {
   data: {
@@ -30,22 +30,7 @@ export default function Review({ data }: ReviewProps) {
               </div>
               {/* <div className="text-sm text-neutral-500">{data.reviewerEmail}</div> */}
             </div>
-            <div className="flex gap-1 items-center text-neutral-500">
-              <div>{data.rating}</div>
-              <div
-                className={
-                  data.rating <= 2
-                    ? "text-amber-100"
-                    : data.rating <= 3
-                    ? "text-amber-200"
-                    : data.rating <= 4
-                    ? "text-amber-300"
-                    : "text-amber-400"
-                }
-              >
-                <Star />
-              </div>
-            </div>
+            <Rating rating={data?.rating} />
           </div>
           <div>{data.comment}</div>
         </div>
