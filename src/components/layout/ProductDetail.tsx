@@ -18,7 +18,7 @@ export default function ProductDetail({ data }: ProductDetailProps) {
   const [showQrCode, setShowQrCode] = useState(false);
 
   return (
-    <div className="flex flex-col md:grid md:grid-cols-12 gap-8 items-start max-h-[85vh] overflow-auto">
+    <div className="flex flex-col md:grid md:grid-cols-12 gap-8 items-start ">
       <div className="w-full col-span-5 md:sticky top-0">
         <div className="relative">
           <div className="flex justify-between items-center absolute top-2 left-0 w-full px-2 ">
@@ -66,7 +66,7 @@ export default function ProductDetail({ data }: ProductDetailProps) {
           <DataRow label="Brand" data={data?.brand} />
         </div>
       </div>
-      <div className="col-span-7 pe-4">
+      <div className="col-span-7">
         <div className="hidden md:flex justify-between items-center">
           <div className="font-bold text-2xl">{data.title}</div>
           <Rating rating={data?.rating} />
