@@ -63,6 +63,7 @@ export default function Products() {
         ) : (
           data.products.map((item: ProductDetailData) => (
             <div
+              key={item.id}
               className="cursor-pointer col-span-3"
               onClick={() => {
                 setIsModalOpen(true);
