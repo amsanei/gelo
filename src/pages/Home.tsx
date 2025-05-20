@@ -1,61 +1,49 @@
-import Button from "../components/ui/Button";
-import Image1 from "../assets/image-1.jpg";
-import Image2 from "../assets/image-2.jpg";
+import cat1 from "../assets/cat-1.png";
+import cat2 from "../assets/cat-2.png";
+import cat3 from "../assets/cat-3.png";
+import cat4 from "../assets/cat-4.png";
+import cat5 from "../assets/cat-5.png";
 import Products from "../components/layout/Products";
+import Search from "../components/icons/Search";
+import CategoryCard from "../components/ui/CategoryCard";
 
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col-reverse md:grid md:grid-cols-12 gap-8 items-center">
-        <div className="col-span-6">
-          <div className="text-4xl text-center md:text-left md:text-6xl mb-8 heading">
-            Sustainable Materials. Modern Design.
+      <div className="flex flex-col gap-8 items-center">
+        <div className="md:w-2/3">
+          <div className="text-4xl text-center  md:text-6xl mb-8 heading text-green-900">
+            Shop Everything, Anytime, Anywhere.
           </div>
           <div>
-            <p className="text-center md:text-left text-neutral-500">
-              Discover curated collections that blend comfort, elegance, and
-              craftsmanship. At Gelo, we believe your space should reflect your
-              personality—warm, stylish, and uniquely yours.
-            </p>
-            <p className="mt-4 hidden md:block text-neutral-500">
-              From cozy sofas to statement dining sets, our pieces are made to
-              last and designed to impress. Whether you're furnishing a new home
-              or upgrading your favorite corner, we’ve got the perfect match for
-              your style.
+            <p className="text-center  text-neutral-500">
+              Welcome to Gelo – your ultimate one-stop shop for everything. From
+              tech to toys, fashion to home goods – we’ve got it all. Unbeatable
+              deals, fast delivery, and thousands of products at your
+              fingertips. Shop smarter, live better – only at Gelo.
             </p>
           </div>
-          <div className="mt-8 flex flex-col items-center md:items-start">
-            <Button>View Products</Button>
-
-            <div className="flex  md:justify-start items-center gap-2 mt-12">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                className="lucide lucide-map-pin-icon lucide-map-pin size-4"
-              >
-                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              <div>Germany ,Strobelallee 50, 44139 Dortmund</div>
-            </div>
+          <div className="mt-8">
+            <form action="/">
+              <div className="border border-neutral-200 md:w-2/3 mx-auto rounded-full flex gap-4 justify-between">
+                <input
+                  type="search"
+                  name="q"
+                  id="q"
+                  className="py-4 px-8 w-full outline-none"
+                  placeholder="Search..."
+                />
+                <button className="px-6 rounded-e-full border-s border-neutral-200 cursor-pointer hover:bg-neutral-100 transition-colors">
+                  <Search />
+                </button>
+              </div>
+            </form>
           </div>
         </div>
-        <div className="col-span-6 grid grid-cols-6 gap-4">
-          <img
-            src={Image1}
-            alt=""
-            className="col-span-3 h-full object-cover rounded-t-full"
-          />
-          <img
-            src={Image2}
-            alt=""
-            className="col-span-3 object-cover rounded-t-full"
-          />
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 w-full">
+          {CATS.map((cat) => (
+            <CategoryCard key={cat.id} img={cat.img} title={cat.title} />
+          ))}
         </div>
       </div>
 
@@ -63,3 +51,11 @@ export default function Home() {
     </>
   );
 }
+
+const CATS = [
+  { id: 1, img: cat1, title: "Cloting" },
+  { id: 2, img: cat2, title: "Tech" },
+  { id: 3, img: cat5, title: "Beauty" },
+  { id: 4, img: cat3, title: "Grocery" },
+  { id: 5, img: cat4, title: "Furniture" },
+];

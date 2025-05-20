@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Star from "../icons/Star";
 
 type CardProps = {
   data: {
@@ -30,13 +31,20 @@ export default function Card({ data }: CardProps) {
       </div>
       <div className="mt-2">
         <div className="flex items-center justify-between">
-          <div>{data?.title}</div>
-          <div className="text-neutral-500 text-sm">{data?.rating}</div>
+          <div className="font-bold">{data?.title}</div>
+          <div className=" text-sm flex gap-1 items-center">
+            <div className="text-neutral-500">{data?.rating}</div>
+            <div className="text-neutral-300">
+              <Star />
+            </div>
+          </div>
         </div>
         <div className="text-neutral-500 ">{data?.category}</div>
         <div className="flex justify-between items-center mt-4">
-          <div>$ {data?.price}</div>
-          <div className="text-sm text-neutral-500">{data?.brand}</div>
+          <div className="line-through text-sm text-neutral-500">
+            $ {data?.price}
+          </div>
+          <div className="font-bold">$ {data?.price}</div>
         </div>
       </div>
     </div>
