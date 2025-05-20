@@ -8,6 +8,7 @@ import ArrowLeft from "../icons/ArrowLeft";
 import axios from "../../axios/axios";
 import Button from "../ui/Button";
 import type { ProductDetailData } from "../../types";
+import SkeletonLoading from "../ui/SkeletonLoading";
 
 export default function Products() {
   const [currPage, setCurrPage] = useState(1);
@@ -43,15 +44,8 @@ export default function Products() {
         )}
       </div>
       <div className="grid md:grid-cols-12 gap-4">
-        {isLoading || isRefetching ? (
-          [1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-            <div className="flex flex-col gap-4 col-span-3" key={item}>
-              <div className="w-full aspect-square bg-neutral-200 animate-pulse"></div>
-              <div className="w-[90%] h-2 rounded-2xl bg-neutral-200 animate-pulse"></div>
-              <div className="w-1/3 h-2 rounded-2xl bg-neutral-200 animate-pulse"></div>
-              <div className="w-1/4 h-2 rounded-2xl bg-neutral-200 animate-pulse"></div>
-            </div>
-          ))
+        {isLoading|| isRefetching ? (
+          <SkeletonLoading count={limit} />
         ) : isError ? (
           <div className="col-span-12 text-center">
             <div className="text-xl font-bold mb-2">

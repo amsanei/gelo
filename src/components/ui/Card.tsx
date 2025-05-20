@@ -8,13 +8,13 @@ type CardProps = {
 
 export default function Card({ data }: CardProps) {
   return (
-    <div className="relative group flex  md:flex-col gap-4 md:gap-0 ">
+    <div className="relative group flex  md:flex-col gap-2 md:gap-0 ">
       <div>
         <div className="size-32 md:w-full md:min-h-[330px] bg-neutral-100 overflow-hidden flex items-center justify-center">
           <img
             src={data?.thumbnail}
             alt={data?.title}
-            className="rounded w-2/3 object-cover group-hover:scale-110 transition-transform duration-300"
+            className="rounded md:w-2/3 object-cover group-hover:scale-110 transition-transform duration-300"
           />
         </div>
       </div>
@@ -30,7 +30,7 @@ export default function Card({ data }: CardProps) {
         </div>
         <div className="text-neutral-500 mb-4">{data?.category}</div>
         {data?.discountPercentage > 0 && (
-          <div className="text-green-800 text-sm bg-white px-2 rounded-full  absolute top-2 left-2">
+          <div className="text-green-800 text-sm bg-white px-2 rounded-full  absolute top-1 left-1 md:top-2 md:left-2">
             {data?.discountPercentage}% Off
           </div>
         )}
