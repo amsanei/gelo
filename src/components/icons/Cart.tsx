@@ -5,10 +5,10 @@ export default function Cart() {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
+      stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
-      className="lucide lucide-shopping-cart-icon lucide-shopping-cart size-6"
+      className="lucide lucide-shopping-cart-icon lucide-shopping-cart size-5"
     >
       <circle cx="8" cy="21" r="1" />
       <circle cx="19" cy="21" r="1" />

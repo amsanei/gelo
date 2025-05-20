@@ -21,31 +21,31 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
           ))}
         </div>
       </div>
-          {images.length > 1 && (
-               <div className="flex justify-between items-center my-4">
-                 <div className="text-sm text-neutral-500 flex gap-1">
-                   <span>{activeIndex + 1}</span>
-                   <span>/</span>
-                   <span>{images.length}</span>
-                 </div>
-                 <div className="flex gap-2">
-                   <button
-                     className="disabled:text-neutral-400 cursor-pointer hover:-translate-x-1 transition-all"
-                     disabled={activeIndex === 0}
-                     onClick={() => setActiveIndex((prev) => prev - 1)}
-                   >
-                     <ArrowLeft />
-                   </button>
-                   <button
-                     className="disabled:text-neutral-400 cursor-pointer hover:translate-x-1 transition-all"
-                     disabled={activeIndex === images.length - 1}
-                     onClick={() => setActiveIndex((prev) => prev + 1)}
-                   >
-                     <ArrowRight />
-                   </button>
-                 </div>
-               </div>
-             )}
+      {images.length > 1 && (
+        <div className="flex justify-between items-center my-2">
+          <div className="text-sm text-neutral-500 flex gap-1">
+            <span>{activeIndex + 1}</span>
+            <span>/</span>
+            <span>{images.length}</span>
+          </div>
+          <div className="flex gap-2">
+            <button
+              className="disabled:text-neutral-400 cursor-pointer hover:-translate-x-1 transition-all"
+              disabled={activeIndex === 0}
+              onClick={() => setActiveIndex((prev) => prev - 1)}
+            >
+              <ArrowLeft />
+            </button>
+            <button
+              className="disabled:text-neutral-400 cursor-pointer hover:translate-x-1 transition-all"
+              disabled={activeIndex === images.length - 1}
+              onClick={() => setActiveIndex((prev) => prev + 1)}
+            >
+              <ArrowRight />
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }

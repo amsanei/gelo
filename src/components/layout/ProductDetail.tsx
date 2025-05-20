@@ -95,21 +95,19 @@ export default function ProductDetail({ data }: any) {
               $ {data?.price}
             </div>
           )}
-          <div className="flex gap-2">
-            {data?.availabilityStatus === "Out of Stock" ? (
-              <Button type="second">Notify Me</Button>
-            ) : (
-              <Button>
-                <div
-                  className="flex gap-2 items-center"
-                  onClick={handleAddToCartClick}
-                >
+          {data?.availabilityStatus === "Out of Stock" ? (
+            <Button type="second">Notify Me</Button>
+          ) : (
+            <div className="flex gap-2">
+              <input type="number" min={data?.minimumOrderQuantity} defaultValue={data?.minimumOrderQuantity}  className="border border-neutral-200 w-16 px-2" />
+              <Button onClick={handleAddToCartClick}>
+                <div className="flex gap-2 items-center">
                   <Cart />
                   <span>Add to Cart</span>
                 </div>
               </Button>
-            )}
-          </div>
+            </div>
+          )}
         </div>
         <div className="flex flex-col gap-2">
           <DataRow label="Category" data={data?.category} />
