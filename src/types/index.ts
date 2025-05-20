@@ -9,11 +9,11 @@ export type Product= {
     brand: string;
     category: string;
     images: string[];
+    availabilityStatus : ProductAvailabilityStatus
   };
 
 export type ProductDetailData = Product & {
   stock: number;
-  availabilityStatus: ProductAvailabilityStatus;
   minimumOrderQuantity: number;
   weight: number;
   dimensions: {

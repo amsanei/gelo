@@ -42,7 +42,7 @@ export default function Products() {
           <div className="text-sm text-neutral-500">{data.total} Product</div>
         )}
       </div>
-      <div className="grid md:grid-cols-12 gap-6">
+      <div className="grid md:grid-cols-12 gap-4">
         {isLoading || isRefetching ? (
           [1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
             <div className="flex flex-col gap-4 col-span-3" key={item}>
