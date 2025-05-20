@@ -3,15 +3,15 @@ import Card from "../ui/Card";
 import Modal from "../ui/Modal";
 import { useState } from "react";
 import ProductDetail from "./ProductDetail";
-import ArrowRight from "../icons/ArrowRight";
-import ArrowLeft from "../icons/ArrowLeft";
 import axios from "../../axios/axios";
 import Button from "../ui/Button";
 import type { ProductDetailData } from "../../types";
 import SkeletonLoading from "../ui/SkeletonLoading";
+import Pagination from "./Pagination";
+import getQueryParam from "../../lib/getQueryParam";
 
 export default function Products() {
-  const [currPage, setCurrPage] = useState(1);
+  const [currPage, setCurrPage] = useState(getQueryParam("page") || 1);
   const limit = 8;
   const skip = (currPage - 1) * limit;
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,7 +44,7 @@ export default function Products() {
         )}
       </div>
       <div className="grid md:grid-cols-12 gap-4">
-        {isLoading|| isRefetching ? (
+        {isLoading || isRefetching ? (
           <SkeletonLoading count={limit} />
         ) : isError ? (
           <div className="col-span-12 text-center">
@@ -70,33 +70,13 @@ export default function Products() {
         )}
       </div>
       {!isLoading && data && (
-        <div className="text-sm w-full flex justify-between items-center mt-4 pt-2 border-t border-neutral-200">
-          <div className="text-neutral-500">
-            Page {currPage} From {Math.ceil(data.total / limit)}
-          </div>
-          <div className="flex gap-4 md:gap-8">
-            <button
-              className="disabled:cursor-not-allowed disabled:text-neutral-500 cursor-pointer group flex items-start gap-2"
-              onClick={() => setCurrPage((prev) => Math.max(prev - 1, 1))}
-              disabled={currPage === 1}
-            >
-              <div className="group-hover:-translate-x-1 group-disabled:translate-x-0 transition-all">
-                <ArrowLeft />
-              </div>
-              <div>Previous Page</div>
-            </button>
-            <button
-              className="disabled:cursor-not-allowed disabled:text-neutral-500 cursor-pointer group flex items-start gap-2"
-              onClick={() => setCurrPage((prev) => prev + 1)}
-              disabled={skip + limit >= data.total}
-            >
-              <div>Next Page</div>
-              <div className="group-hover:translate-x-1 group-disabled:translate-x-0 transition-all">
-                <ArrowRight />
-              </div>
-            </button>
-          </div>
-        </div>
+        <Pagination
+          currPage={currPage}
+          onPageChange={setCurrPage}
+          total={data?.total}
+          limit={limit}
+          skip={skip}
+        />
       )}
 
       {selectedItem && (
