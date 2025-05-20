@@ -1,2 +1,2 @@
-# gelo-furniture
-Furniture store for salona company interview 
+# gelo
+Everything store for salona company interview 
