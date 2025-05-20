@@ -12,7 +12,7 @@ export default function ProductCartControls({
   minimumOrderQuantity,
 }: ProductCartControlsProps) {
   const handleAddToCartClick = () => {
-    const end = Date.now() + 3000;
+    const end = Date.now() + ( 0.5 * 1000);
     const colors = ["#0d542b", "#ffffff"];
 
     (function frame() {

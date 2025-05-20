@@ -5,9 +5,9 @@ export default function ArrowRight() {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="1"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="lucide lucide-move-right-icon lucide-move-right size-6"
     >
       <path d="M18 8L22 12L18 16" />

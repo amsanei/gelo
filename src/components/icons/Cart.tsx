@@ -5,9 +5,9 @@ export default function Cart() {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="lucide lucide-shopping-cart-icon lucide-shopping-cart size-5"
     >
       <circle cx="8" cy="21" r="1" />

@@ -3,6 +3,7 @@ import cat2 from "../assets/cat-2.png";
 import cat3 from "../assets/cat-3.png";
 import cat4 from "../assets/cat-4.png";
 import cat5 from "../assets/cat-5.png";
+import cat6 from "../assets/cat-6.png";
 import Products from "../components/layout/Products";
 import Search from "../components/icons/Search";
 import CategoryCard from "../components/ui/CategoryCard";
@@ -41,7 +42,7 @@ export default function Home() {
               </form>
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 w-full">
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-4 w-full">
             {CATS.map((cat) => (
               <CategoryCard key={cat.id} img={cat.img} title={cat.title} />
             ))}
@@ -61,4 +62,5 @@ const CATS = [
   { id: 3, img: cat5, title: "Beauty" },
   { id: 4, img: cat3, title: "Grocery" },
   { id: 5, img: cat4, title: "Furniture" },
+  { id: 6, img: cat6, title: "Books" },
 ];
