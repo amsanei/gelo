@@ -43,7 +43,7 @@ export default function Products() {
           <div className="text-sm text-neutral-500">{data.total} Product</div>
         )}
       </div>
-      <div className="grid md:grid-cols-12 gap-4">
+      <div className="grid md:grid-cols-6 lg:grid-cols-9 xl:grid-cols-12 gap-4">
         {isLoading || isRefetching ? (
           <SkeletonLoading count={limit} />
         ) : isError ? (
@@ -58,7 +58,7 @@ export default function Products() {
           data.products.map((item: ProductDetailData) => (
             <div
               key={item.id}
-              className="cursor-pointer col-span-3"
+              className="cursor-pointer col-span-3 lg:col-span-"
               onClick={() => {
                 setIsModalOpen(true);
                 setSelectedItem(item);

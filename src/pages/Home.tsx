@@ -13,12 +13,12 @@ export default function Home() {
     <>
       <div className="bg-gradient-to-b from-green-700/10 to-white px-4 md:px-16 py-8">
         <div className="flex flex-col gap-8 items-center">
-          <div className="md:w-2/3">
-            <div className="text-4xl text-center  md:text-6xl mb-8 heading text-green-900">
+          <div className="md:w-4/5 lg:w-2/3">
+            <div className="text-4xl text-center md:text-6xl mb-8 heading text-green-900">
               Shop Everything, Anytime, Anywhere.
             </div>
             <div>
-              <p className="text-center  text-neutral-500">
+              <p className="text-center text-neutral-500">
                 Welcome to Gelo – your ultimate one-stop shop for everything.
                 From tech to toys, fashion to home goods – we’ve got it all.
                 Unbeatable deals, fast delivery, and thousands of products at
@@ -27,7 +27,7 @@ export default function Home() {
             </div>
             <div className="mt-8">
               <form action="/">
-                <div className="bg-white border border-neutral-200 md:w-2/3 mx-auto rounded-full flex gap-4 justify-between">
+                <div className="lg:w-2/3 bg-white border border-neutral-200 mx-auto rounded-full flex gap-4 justify-between">
                   <input
                     type="search"
                     name="q"
@@ -35,14 +35,14 @@ export default function Home() {
                     className="py-4 px-8 w-full outline-none"
                     placeholder="Search..."
                   />
-                  <button className="px-6 rounded-e-full border-s border-neutral-200 cursor-pointer hover:bg-neutral-100 transition-colors">
+                  <button className="px-6 rounded-e-full border-s border-neutral-200 cursor-pointer hover:bg-neutral-100 transition-colors text-green-800">
                     <Search />
                   </button>
                 </div>
               </form>
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-4 w-full">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 w-full">
             {CATS.map((cat) => (
               <CategoryCard key={cat.id} img={cat.img} title={cat.title} />
             ))}

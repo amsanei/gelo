@@ -18,7 +18,7 @@ export default function Pagination({
   skip,
 }: PaginationProps) {
   return (
-    <div className="text-sm w-full flex justify-between items-center mt-4 pt-2 border-t border-neutral-200">
+    <div className="text-sm w-full flex flex-col gap-2 md:flex-row justify-between items-center mt-4 pt-2 border-t border-neutral-200">
       <div className="text-neutral-500">
         Page {currPage} From {Math.ceil(total / limit)}
       </div>

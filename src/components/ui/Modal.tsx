@@ -14,7 +14,7 @@ export default function Modal({
   onClose,
   size = "lg",
 }: ModalProps) {
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const handleMaskOnClick = (event: MouseEvent<HTMLElement>) => {
     if ((event.target as HTMLElement)?.id === "mask") {
@@ -51,7 +51,7 @@ export default function Modal({
             </div>
             <div
               className={`${
-                size === "sm" ? "w-1/4" : size === "md" ? "w-2/4" : "w-3/4"
+                size === "sm" ? " lg:w-2/4 xl:w-1/4" : size === "md" ? "w-2/4" : "lg:w-8/9 xl:w-3/4"
               } bg-white p-4 my-8 relative max-h-[85vh] overflow-auto`}
             >
               {children}

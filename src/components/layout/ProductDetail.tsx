@@ -18,8 +18,8 @@ export default function ProductDetail({ data }: ProductDetailProps) {
   const [showQrCode, setShowQrCode] = useState(false);
 
   return (
-    <div className="flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-8 items-start ">
-      <div className="w-full col-span-5 md:sticky top-0">
+    <div className="flex flex-col lg:grid lg:grid-cols-12 gap-4 lg:gap-8 items-start ">
+      <div className="w-full col-span-5 lg:sticky top-0">
         <div className="relative">
           <div className="flex justify-between items-center absolute top-2 left-0 w-full px-2 ">
             <button
