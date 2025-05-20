@@ -60,8 +60,8 @@ export default function Modal({
         ) : (
           <div className="bg-white absolute top-48 rounded-t-4xl overflow-auto w-full min-h-[75vh]">
             <div
-              className="mx-auto h-2 w-1/2 bg-neutral-200 my-4 mb-2 rounded-full"
-              onClick={onClose}
+              className="mx-auto h-2 w-1/2 bg-neutral-200 my-4 mb-2 rounded-full cursor-pointer"
+              onClick={() => {onClose(); toggleBodyScroll("auto");}}
             ></div>
             <div className="bg-white p-4">{children}</div>
           </div>
