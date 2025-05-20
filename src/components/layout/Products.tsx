@@ -6,6 +6,7 @@ import ProductDetail from "./ProductDetail";
 import ArrowRight from "../icons/ArrowRight";
 import ArrowLeft from "../icons/ArrowLeft";
 import axios from "../../axios/axios";
+import Button from "../ui/Button";
 
 export default function Products() {
   const [currPage, setCurrPage] = useState(1);
@@ -19,52 +20,56 @@ export default function Products() {
     queryKey: [string, number, number];
   }) => {
     const [, limit, skip] = queryKey;
-    return axios
-      .get(`products?limit=${limit}&skip=${skip}`)
-      .then((res) => {
-        if (res.status === 200) return res.data;
-      })
+    return axios.get(`products?limit=${limit}&skip=${skip}`).then((res) => {
+      if (res.status === 200) return res.data;
+    });
   };
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isRefetching, isError, refetch } = useQuery({
     queryKey: ["data", limit, skip],
     queryFn: getData,
   });
 
   return (
     <div className="mt-16">
-      <div className="flex justify-between items-center">
-        <div className="font-bold text-xl mb-4">Products</div>
+      <div className="flex justify-between items-center mb-4 pb-2 border-b border-neutral-200">
+        <div>Products</div>
+        {data && (
+          <div className="text-sm text-neutral-500">{data.total} Product</div>
+        )}
       </div>
       <div className="grid md:grid-cols-12 gap-6">
-        {isLoading
-          ? [1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-              <div className="flex flex-col gap-4 col-span-3" key={item}>
-                <div className="w-full aspect-square bg-neutral-200 animate-pulse"></div>
-                <div className="w-[90%] h-2 rounded-2xl bg-neutral-200 animate-pulse"></div>
-                <div className="w-1/3 h-2 rounded-2xl bg-neutral-200 animate-pulse"></div>
-                <div className="w-1/4 h-2 rounded-2xl bg-neutral-200 animate-pulse"></div>
-              </div>
-            ))
-          : data.products.map((item: any) => (
-              <div
-                className="cursor-pointer col-span-3"
-                onClick={() => {
-                  setIsModalOpen(true);
-                  setSelectedItem(item);
-                }}
-              >
-                <Card key={item.id} data={item} />
-              </div>
-            ))}
+        {isLoading || isRefetching ? (
+          [1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+            <div className="flex flex-col gap-4 col-span-3" key={item}>
+              <div className="w-full aspect-square bg-neutral-200 animate-pulse"></div>
+              <div className="w-[90%] h-2 rounded-2xl bg-neutral-200 animate-pulse"></div>
+              <div className="w-1/3 h-2 rounded-2xl bg-neutral-200 animate-pulse"></div>
+              <div className="w-1/4 h-2 rounded-2xl bg-neutral-200 animate-pulse"></div>
+            </div>
+          ))
+        ) : isError ? (
+          <div className="col-span-12 text-center">
+            <div className="text-2xl mb-4">Something went wrong :(</div>
+            <Button onClick={refetch}>Try Again</Button>
+          </div>
+        ) : (
+          data.products.map((item: any) => (
+            <div
+              className="cursor-pointer col-span-3"
+              onClick={() => {
+                setIsModalOpen(true);
+                setSelectedItem(item);
+              }}
+            >
+              <Card key={item.id} data={item} />
+            </div>
+          ))
+        )}
       </div>
       {!isLoading && (
-        <div className="text-sm  flex justify-between items-center mt-8">
-          <div className="flex gap-2 text-neutral-500">
-            <div>{data.total} Product</div>
-            <div>|</div>
-            <div>
-              Page {currPage} From {Math.ceil(data.total / limit)}
-            </div>
+        <div className="text-sm  flex justify-between items-center mt-4 pt-2 border-t border-neutral-200">
+          <div className="text-neutral-500">
+            Page {currPage} From {Math.ceil(data.total / limit)}
           </div>
           <div className="flex gap-8">
             <button
