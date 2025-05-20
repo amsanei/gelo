@@ -5,14 +5,14 @@ type ProductPriceProps = {
   availabilityStatus: ProductAvailabilityStatus;
   discountPercentage: number;
   price: number;
-  type : "vertical" |"horizontal"
+  type ?: "vertical" |"horizontal"
 };
 
 export default function ProductPrice({
   availabilityStatus,
   discountPercentage,
   price,
-  type = "vertical"
+  type = "horizontal"
 }: ProductPriceProps) {
   if (availabilityStatus === "Out of Stock") {
     return <div className="text-sm text-neutral-500">Out of Stock</div>;

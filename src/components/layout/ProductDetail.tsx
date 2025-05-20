@@ -18,7 +18,7 @@ export default function ProductDetail({ data }: ProductDetailProps) {
   const [showQrCode, setShowQrCode] = useState(false);
 
   return (
-    <div className="flex flex-col md:grid md:grid-cols-12 gap-8 items-start ">
+    <div className="flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-8 items-start ">
       <div className="w-full col-span-5 md:sticky top-0">
         <div className="relative">
           <div className="flex justify-between items-center absolute top-2 left-0 w-full px-2 ">
@@ -39,7 +39,7 @@ export default function ProductDetail({ data }: ProductDetailProps) {
             )}
           </div>
           <ImageCarousel images={data.images} />
-          <div className="flex md:hidden justify-between items-center my-2">
+          <div className="flex md:hidden gap-4 justify-between items-center my-4">
             <div className="font-bold text-2xl">{data.title}</div>
             <Rating rating={data?.rating} />
           </div>
@@ -49,7 +49,6 @@ export default function ProductDetail({ data }: ProductDetailProps) {
             barCode={data?.meta?.barcode}
           />
         </div>
-
         <div className="flex justify-between items-center mt-2 mb-4">
           <ProductPrice
             availabilityStatus={data?.availabilityStatus}
@@ -67,11 +66,11 @@ export default function ProductDetail({ data }: ProductDetailProps) {
         </div>
       </div>
       <div className="col-span-7">
-        <div className="hidden md:flex justify-between items-center">
+        <div className="hidden md:flex justify-between items-center mb-4">
           <div className="font-bold text-2xl">{data.title}</div>
           <Rating rating={data?.rating} />
         </div>
-        <div className="my-4 text-neutral-500">{data.description}</div>
+        <div className=" text-neutral-500">{data.description}</div>
         <div className="mt-4 flex flex-col gap-4">
           <DataRow data={data.weight + " Kg"} label="Weight" />
           <DataRow data={data.dimensions.width + " Cm"} label="Width" />
