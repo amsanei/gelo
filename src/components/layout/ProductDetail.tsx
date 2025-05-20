@@ -7,6 +7,7 @@ import Button from "../ui/Button";
 import Cart from "../icons/Cart";
 import Star from "../icons/Star";
 import confetti from "canvas-confetti";
+import getDiscountedPrice from "../../lib/getDiscountedPrice";
 
 export default function ProductDetail({ data }: any) {
   const [currImage, setCurrImage] = useState(0);
@@ -43,6 +44,11 @@ export default function ProductDetail({ data }: any) {
     <div className="flex flex-col md:grid md:grid-cols-12 gap-8 items-start max-h-[85vh] overflow-auto">
       <div className="w-full col-span-5 sticky top-0">
         <div className="relative">
+          {data?.discountPercentage > 0 && (
+            <div className="text-green-800 text-sm bg-white px-2 rounded-full  absolute top-2 left-2">
+              {data?.discountPercentage}% Off
+            </div>
+          )}
           {showQrCode && (
             <div className="flex items-center justify-center w-full h-full top-0 left-0 absolute bg-black/20 backdrop-blur">
               <div className="w-2/3 bg-white p-2">
@@ -93,12 +99,20 @@ export default function ProductDetail({ data }: any) {
         )}
 
         <div className="flex justify-between items-center my-4">
-          <div>
-            <div className="line-through text-sm text-neutral-500">
-              $ {data.price}
+          {data?.discountPercentage > 0 ? (
+            <div>
+              <div className="line-through text-sm text-neutral-500">
+                $ {data?.price}
+              </div>
+              <div className="font-bold">
+                $ {getDiscountedPrice(data?.price, data?.discountPercentage)}
+              </div>
             </div>
-            <div className="font-bold text-xl">$ {data.price}</div>
-          </div>
+          ) : (
+            <div className="font-bold mt-4 w-full text-end">
+              $ {data?.price}
+            </div>
+          )}
           <div className="flex gap-2">
             <Button
               type="second"
