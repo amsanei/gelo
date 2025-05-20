@@ -10,44 +10,47 @@ import CategoryCard from "../components/ui/CategoryCard";
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col gap-8 items-center">
-        <div className="md:w-2/3">
-          <div className="text-4xl text-center  md:text-6xl mb-8 heading text-green-900">
-            Shop Everything, Anytime, Anywhere.
+      <div className="bg-gradient-to-b from-green-700/10 to-white px-4 md:px-16 py-8">
+        <div className="flex flex-col gap-8 items-center">
+          <div className="md:w-2/3">
+            <div className="text-4xl text-center  md:text-6xl mb-8 heading text-green-900">
+              Shop Everything, Anytime, Anywhere.
+            </div>
+            <div>
+              <p className="text-center  text-neutral-500">
+                Welcome to Gelo – your ultimate one-stop shop for everything.
+                From tech to toys, fashion to home goods – we’ve got it all.
+                Unbeatable deals, fast delivery, and thousands of products at
+                your fingertips. Shop smarter, live better – only at Gelo.
+              </p>
+            </div>
+            <div className="mt-8">
+              <form action="/">
+                <div className="bg-white border border-neutral-200 md:w-2/3 mx-auto rounded-full flex gap-4 justify-between">
+                  <input
+                    type="search"
+                    name="q"
+                    id="q"
+                    className="py-4 px-8 w-full outline-none"
+                    placeholder="Search..."
+                  />
+                  <button className="px-6 rounded-e-full border-s border-neutral-200 cursor-pointer hover:bg-neutral-100 transition-colors">
+                    <Search />
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-          <div>
-            <p className="text-center  text-neutral-500">
-              Welcome to Gelo – your ultimate one-stop shop for everything. From
-              tech to toys, fashion to home goods – we’ve got it all. Unbeatable
-              deals, fast delivery, and thousands of products at your
-              fingertips. Shop smarter, live better – only at Gelo.
-            </p>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 w-full">
+            {CATS.map((cat) => (
+              <CategoryCard key={cat.id} img={cat.img} title={cat.title} />
+            ))}
           </div>
-          <div className="mt-8">
-            <form action="/">
-              <div className="border border-neutral-200 md:w-2/3 mx-auto rounded-full flex gap-4 justify-between">
-                <input
-                  type="search"
-                  name="q"
-                  id="q"
-                  className="py-4 px-8 w-full outline-none"
-                  placeholder="Search..."
-                />
-                <button className="px-6 rounded-e-full border-s border-neutral-200 cursor-pointer hover:bg-neutral-100 transition-colors">
-                  <Search />
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 w-full">
-          {CATS.map((cat) => (
-            <CategoryCard key={cat.id} img={cat.img} title={cat.title} />
-          ))}
         </div>
       </div>
-
-      <Products />
+      <div className="mx-4 md:mx-16 my-8">
+        <Products />
+      </div>
     </>
   );
 }
