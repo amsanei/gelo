@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Star from "../icons/Star";
 import getDiscountedPrice from "../../lib/getDiscountedPrice";
 
@@ -18,16 +17,13 @@ type CardProps = {
 };
 
 export default function Card({ data }: CardProps) {
-  const [isHovered, setIsHovered] = useState(false);
   return (
-    <div className="relative">
-      <div className="min-h-[330px] bg-neutral-100 ">
+    <div className="relative group">
+      <div className="min-h-[330px] bg-neutral-100 overflow-hidden grid content-center">
         <img
-          src={isHovered && data?.images[1] ? data?.images[1] : data?.thumbnail}
+          src={data?.thumbnail}
           alt={data?.title}
-          className="rounded w-full object-cover"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          className="rounded w-full object-cover group-hover:scale-110 transition-transform duration-300"
         />
       </div>
       <div className="mt-2">

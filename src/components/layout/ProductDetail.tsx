@@ -1,16 +1,14 @@
 import { useState } from "react";
 import DataRow from "../ui/DataRow";
 import Review from "../ui/Review";
-import ArrowLeft from "../icons/ArrowLeft";
-import ArrowRight from "../icons/ArrowRight";
 import Button from "../ui/Button";
 import Cart from "../icons/Cart";
 import Star from "../icons/Star";
 import confetti from "canvas-confetti";
 import getDiscountedPrice from "../../lib/getDiscountedPrice";
+import ImageCarousel from "../ui/ImageCarousel";
 
 export default function ProductDetail({ data }: any) {
-  const [currImage, setCurrImage] = useState(0);
   const [showQrCode, setShowQrCode] = useState(false);
 
   const handleAddToCartClick = () => {
@@ -44,6 +42,7 @@ export default function ProductDetail({ data }: any) {
     <div className="flex flex-col md:grid md:grid-cols-12 gap-8 items-start max-h-[85vh] overflow-auto">
       <div className="w-full col-span-5 sticky top-0">
         <div className="relative">
+          <ImageCarousel images={data.images} />
           {data?.discountPercentage > 0 && (
             <div className="text-green-800 text-sm bg-white px-2 rounded-full  absolute top-2 left-2">
               {data?.discountPercentage}% Off
@@ -64,39 +63,7 @@ export default function ProductDetail({ data }: any) {
               </div>
             </div>
           )}
-          <div className="min-h-[330px] bg-neutral-100 w-full">
-            <img
-              src={data.images[currImage]}
-              alt={data.title}
-              className=" w-full object-cover"
-            />
-          </div>
         </div>
-        {data.images.length > 1 && (
-          <div className="flex justify-between items-center my-4">
-            <div className="text-sm text-neutral-500 flex gap-1">
-              <span>{currImage + 1}</span>
-              <span>/</span>
-              <span>{data?.images.length}</span>
-            </div>
-            <div className="flex gap-2">
-              <button
-                className="disabled:text-neutral-400 cursor-pointer hover:-translate-x-1 transition-all"
-                disabled={currImage === 0}
-                onClick={() => setCurrImage((prev) => prev - 1)}
-              >
-                <ArrowLeft />
-              </button>
-              <button
-                className="disabled:text-neutral-400 cursor-pointer hover:translate-x-1 transition-all"
-                disabled={currImage === data.images.length - 1}
-                onClick={() => setCurrImage((prev) => prev + 1)}
-              >
-                <ArrowRight />
-              </button>
-            </div>
-          </div>
-        )}
 
         <div className="flex justify-between items-center my-4">
           {data?.discountPercentage > 0 ? (
