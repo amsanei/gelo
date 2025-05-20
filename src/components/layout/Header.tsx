@@ -17,12 +17,20 @@ export default function Header() {
           >
             About
           </button>
-          <div className="text-neutral-500 hover:text-green-800 transition-colors cursor-pointer">
+          <a
+            href="https://github.com/amsanei/gelo"
+            target="_blank"
+            className="text-neutral-500 hover:text-green-800 transition-colors cursor-pointer"
+          >
             Github
-          </div>
-          <div className="text-neutral-500 hover:text-green-800 transition-colors cursor-pointer">
+          </a>
+          <a
+            href="https://www.figma.com/community/file/1506731539979417622"
+            target="_blank"
+            className="text-neutral-500 hover:text-green-800 transition-colors cursor-pointer"
+          >
             Figma
-          </div>
+          </a>
         </div>
       </header>
       <About isOpen={aboutModal} onClose={() => setAboutModal(false)} />
